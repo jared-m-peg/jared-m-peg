@@ -29,6 +29,9 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 
 ## Linux Administration
 
+- Verified software integrity using SHA256 checksums
+- Managed GPG keys for package signing and repository authentication on Ubuntu
+- Added and trusted external keyservers for secure package installation
 - User and group lifecycle management
 - File permissions (chmod, chown, umask)
 - systemd service management

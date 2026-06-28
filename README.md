@@ -17,8 +17,6 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 - WireGuard VPN (secure remote access)
 - Wireshark (packet capture and protocol analysis)
 
----
-
 ## Cloud (AWS)
 
 - VPC architecture and network design
@@ -28,8 +26,6 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 - Internet Gateway configuration
 - NAT Gateway (cost-aware implementation)
 - AWS Systems Manager (SSM) for secure instance access without SSH exposure
-
----
 
 ## Linux Administration
 
@@ -45,8 +41,6 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 - Storage management (mount, lsblk, fdisk basics)
 - SSH configuration and hardening
 - UFW firewall configuration
-
----
 
 ## Featured Projects
 

@@ -199,6 +199,9 @@ Now Winbox can only be accessed from devices in my own subnet (192.168.88.0/24).
 /ip dhcp-server print
 /ip firewall filter print
 /ip firewall nat print
+```
+
+```text
 16. Enable PPPoE last
 /interface pppoe-client
 enable pppoe-out1

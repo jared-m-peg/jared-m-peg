@@ -1,6 +1,6 @@
 # A Guide for Mikrotik RouterOS 7
-## Creating a new configuration, making it secure, and connecting to the internet.
-## Creating VLANs and isolating them from accessing each other (and isolating the Guest Wifi SSID from accessing the other VLANs).
+Creating a new configuration, making it secure, and connecting to the internet.
+Creating VLANs and isolating them from accessing each other (and isolating the Guest Wifi SSID from accessing the other VLANs).
 
 ## Part 1:
 0. Create a new configuration

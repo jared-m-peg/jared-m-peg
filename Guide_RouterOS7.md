@@ -63,7 +63,7 @@ WAN:
 add list=WAN interface=ether1
 ```
 
-The Mikrotik router connects to my Huawei modem on ether1 using an ethernet cable. My Huawei modem is set to bridged(?) mode (the Mikrotik does the routing instead of the Huawei).
+The Mikrotik router connects to my Huawei modem on ether1 using an ethernet cable. My Huawei modem is set to PPPoE passthrough/bridged mode (the Mikrotik does the routing instead of the Huawei).
 
 LAN:
 

@@ -308,7 +308,7 @@ This command shows your bridge ports. The interface ether2 didn't appear for me;
 add bridge=bridge1 interface=ether2 pvid=10
 ```
 
-7. Create DHCP server for VLAN 20
+7. Create DHCP server for VLAN20
 
 First create the DHCP pool:
 
@@ -382,7 +382,7 @@ add chain=forward action=accept in-interface-list=VLAN40-GUEST out-interface-lis
 
 Go to IP -> Firewall -> Filter Rules and drag these three forward chain rules above the final drop rule on the forward chain, but position them lower than the "drop invalid" rule.
 
-DO THE INPUT RULES LATER - MGMT WILL BE THE ONLY ONE ALLOWED ACCESS TO ROUTER SERVICES.
+DO THE INPUT RULES LATER - VLAN10-MGMT WILL BE THE ONLY ONE ALLOWED ACCESS TO ROUTER SERVICES.
 
 Now try disabling dhcp1, enabling vlan filtering, and reconnecting to the router on 192.168.20.x or the router's MAC address:
 
@@ -743,6 +743,7 @@ Forward chain
 - All VLANs can access the internet
 - VLAN to VLAN connections are blocked: i.e., VLAN20-LAN cannot initiate a connection to VLAN30-WIFI and vice-versa
 
+- Final cleanup step: Go to Interfaces -> Interface List and remove the duplicate interface list that is incorrectly configured.
 
 ## Part 3: Setting up a WiFi guest network (5ghz)
 
@@ -803,5 +804,4 @@ After running these Powershell tests, the packets increased from 0 to 24, which 
 Under Bridge -> Ports double click on each interface (ether2/3/4/5, wifi2, wifi2-guest), go to the VLAN tab, and set Frame Types to:
 admit only untagged and priority tagged
 
-
-
+- Final cleanup step: Go to Interfaces -> Interface List and remove the duplicate interface list that is incorrectly configured.

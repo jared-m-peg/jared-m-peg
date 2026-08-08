@@ -1,8 +1,11 @@
 # A Guide for Mikrotik RouterOS 7
-- Creating a new configuration, making it secure, and connecting to the internet
-- Creating VLANs and isolating them from accessing each other (and isolating the Guest Wifi SSID from accessing the other VLANs)
+- Part 1: Creating a new configuration, securing it with firewall filter rules, and connecting to the internet over PPPoE
+- Part 2: Creating VLANs and isolating them from accessing each other to enhance security.
+- Part 3: Setting up a WiFi guest network on its own VLAN
+- Part 4: Checking whether access to router services (Winbox/SSH) is truly restricted to VLAN10-MGMT
+- Part 5: Checking whether inter-VLAN traffic is truly blocked by monitoring packets
 
-## Part 1:
+## Part 1: Creating a new configuration, securing it with firewall filter rules, and connecting to the internet over PPPoE
 0. Create a new configuration
 #Note: The purpose of creating a new config here was to bypass some issues that I had with creating VLANs on the default config that ships with the router. If you're having trouble with getting VLANs running on the default config, then this guide may help you get a fresh config running with VLANs working.
 
@@ -219,7 +222,7 @@ Test:
 /ping 1.1.1.1
 ```
 
-## Part 2:
+## Part 2. Creating VLANs and isolating them from accessing each other to enhance security.
 
 Design goals:
 
@@ -721,9 +724,9 @@ Input chain
 4  everything else		DROP
 ```
 
-VLAN10-MGMT can initiate connections with the router because it has been explicity allowed to do so
-Any attempted connections to the router not explicitly allowed are blocked
-Thus, VLAN20/30/40 cannot make connections to the router since they have not been explicitly allowed to do so
+- VLAN10-MGMT can initiate connections with the router because it has been explicity allowed to do so
+- Any attempted connections to the router not explicitly allowed are blocked
+- Thus, VLAN20/30/40 cannot make connections to the router since they have not been explicitly allowed to do so
 
 ```text
 Forward chain
@@ -737,11 +740,11 @@ Forward chain
 23  everything else		DROP
 ```
 
-All VLANs can access the internet
-VLAN to VLAN connections are blocked: i.e., VLAN20-LAN cannot initiate a connection to VLAN30-WIFI and vice-versa
+- All VLANs can access the internet
+- VLAN to VLAN connections are blocked: i.e., VLAN20-LAN cannot initiate a connection to VLAN30-WIFI and vice-versa
 
 
-## Setting up WiFi 5Ghz
+## Part 3: Setting up a WiFi guest network (5ghz)
 
 In Winbox, click on WiFi -> WiFi and then double-click on wifi2
 In the Configuration tab name your SSID and Country
@@ -773,11 +776,12 @@ it should print something like 192.168.40.200
 Under Bridge -> Ports double click on each interface (ether2/3/4/5, wifi2, wifi2-guest), go to the VLAN tab, and set Frame Types to:
 admit only untagged and priority tagged
 
-## CHECKING VLAN ACCESS TO ROUTER SERVICES
+## Part 4: Checking whether access to router services (Winbox/SSH) is truly restricted to VLAN10-MGMT
 We need to verify that VLAN10-MGMT is the only vlan that can access router services. To do so, first connect your PC to the router on ether2 and attempt a Winbox login.
 Then attempt to login to Winbox on ether3, ether4, ether5, wifi2, and wifi2-guest. It shouldn't work.
 
-## CHECKING INTER-VLAN ACCESS
+## Part 5: Checking whether inter-VLAN traffic is truly blocked by monitoring packets
+
 Devices connected to one VLAN shouldn't be able to access devices connected to another VLAN.
 Connect your PC to ether2 (VLAN10-MGMT) and try communicating with a device (PC, phone) that is connected to VLAN30-WIFI by running tests in CMD and Powershell. 
 Under IP -> DHCP Server -> Leases identify the DHCP lease (e.g. 192.168.30.200) of a device (PC, phone) on VLAN30-WIFI other than your PC that is connected to VLAN10-MGMT. Try using your PC (on VLAN10-MGMT) to communicate with another device (on VLAN30-WIFI) by using the following tests on Powershell on Windows 10:

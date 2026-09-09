@@ -17,6 +17,22 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 - WireGuard VPN (secure remote access)
 - Wireshark (packet capture and protocol analysis)
 
+## Build Tools & Software Verification
+
+- Git/GitHub (repository cloning and source management)
+- Apache Ant (Java build automation)
+- JDK 8 / OpenJDK (Java development environment)
+- Java JAR execution
+- Windows CMD and PowerShell
+- GPG/OpenPGP (signature verification)
+- SHA256 checksum verification
+- Windows digital signature verification
+- Environment variables and PATH configuration
+- Windows batch scripting
+- Building software from source
+- Software integrity and dependency verification
+- GitHub Markdown documentation
+
 ## Cloud (AWS)
 
 - VPC architecture and network design
@@ -26,9 +42,6 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 - Internet Gateway configuration
 - NAT Gateway (cost-aware implementation)
 - AWS Systems Manager (SSM) for secure instance access without SSH exposure
-
-Technical Skills:
-Git/GitHub, Apache Ant, JDK 8/OpenJDK, Windows CMD & PowerShell, GPG/OpenPGP, SHA-256 checksum verification, digital signature verification, environment variable/PATH configuration, Java build environments, Windows batch scripting, software build automation, source-code compilation, software supply-chain verification, technical documentation and Markdown.
 
 ## Linux Administration
 

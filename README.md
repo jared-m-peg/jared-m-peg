@@ -48,6 +48,9 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 Secure home network design implementing VLAN segmentation, default-deny firewall policies, NAT, and WireGuard VPN access.
 https://github.com/jared-m-peg/jared-m-peg/blob/main/Guide_RouterOS7.md
 
+🔹 Reformatting a Bootable USB Drive Using the Command Line
+https://github.com/jared-m-peg/jared-m-peg/blob/main/reformat-bootable-usb-drive.md
+
 🔹 AWS Secure VPC Lab  
 Custom VPC architecture with public/private subnets, EC2 deployment, controlled routing, and secure access via AWS Systems Manager.
 

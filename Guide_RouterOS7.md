@@ -108,6 +108,7 @@ add address=192.168.88.0/24 gateway=192.168.88.1 dns-server=1.1.1.1,8.8.8.8
 ```
 
 12\. Create firewall rules:
+
 Input chain
 ```text
 /ip firewall filter

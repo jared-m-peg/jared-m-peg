@@ -200,6 +200,7 @@ java -DdownloadWorlds=openrsc_official -jar dist\rscplus.jar
 ```
 
 6\. Creating a batch file (and a desktop shortcut for it) in order to run OpenRSC quickly:
+
 In Windows Explorer, navigate to `C:\Games\rscplus`
 
 Right-click on the white space, click on `New`, click on `Text Document`

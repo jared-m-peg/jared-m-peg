@@ -52,7 +52,7 @@ Secure home network design implementing VLAN segmentation, default-deny firewall
 https://github.com/jared-m-peg/jared-m-peg/blob/main/Guide_RouterOS7.md
 
 🔹 Building a Software Program from its Source Code  
-Built an open-source Java application from source on Windows, configured Git, Apache Ant, and JDK 1.8; verified downloaded dependencies using GPG/OpenPGP signatures, SHA256 checksums, and Windows digital signatures; configured system environment variables; compiled the application using Ant; validated and executed the resulting JAR; and created a Windows batch launcher. Documented the complete reproducible process in GitHub Markdown. 
+Built an open-source Java application from source on Windows, configured Git, Apache Ant, and JDK 1.8; verified downloaded dependencies using GPG/OpenPGP signatures, SHA256 checksums, and Windows digital signatures; configured system environment variables; compiled the application using Ant; validated and executed the resulting JAR; and created a Windows batch launcher. Documented the complete reproducible process in GitHub Markdown.  
 https://github.com/jared-m-peg/jared-m-peg/blob/main/building-from-source-code.md
 
 🔹 Reformatting a Bootable USB Flash Drive Using the Command Line on Windows 10  

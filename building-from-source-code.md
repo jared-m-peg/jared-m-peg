@@ -2,7 +2,9 @@
 
 ## 1\. Download and install the prerequisites (Git, Apache Ant, and JDK 1.8) for building RSC+
 
-### Download and install Git from here: `https://git-scm.com/install/windows`
+### Download and install Git:
+
+Download Git from here: `https://git-scm.com/install/windows`
 
 Before installing it, check that its digital signature is OK:
 
@@ -10,7 +12,7 @@ Right click the downloaded Git file, `Git-2.55.0.5-64-bit.exe`, click on `Proper
 
 If it prints, `The digital signature is OK.`, then install it.
 
-Download the Apache Ant binary, the ASC file, and the KEYS file:
+### Download the Apache Ant binary, the ASC file, and the KEYS file:
 
 Go to: `https://downloads.apache.org/ant/`
 
@@ -61,13 +63,15 @@ Navigate to `C:\Tools`
 
 Then click on `Extract`
 
-Download JDK 8 from here: `https://adoptium.net/temurin/releases/?version=8&os=any&arch=any`
+### Download and install JDK 1.8:
+
+Download JDK 1.8 from here: `https://adoptium.net/temurin/releases/?version=8&os=any&arch=any`
 
 Under Windows, select `JDK` and `x64`, and then right-click `MSI` and open in new tab to download the file
 
 On this same page click `Checksum` to see the sha256 checksum
 
-Go to Windows Explorer, go to the folder where the downloaded file is located, right click on the space, and click on `Open in Terminal` to open a Powershell window
+Go to Windows Explorer, go to the folder where the downloaded file is located, hold down Shift on the keyboard and right-click on the white space, and click on `Open PowerShell window here` to open a Powershell window
 
 In the Powershell window use this command:
 ```text
@@ -79,19 +83,13 @@ It should output a sha256 hash such as:
 ```
 which should match the one on the website.
 
-Now right-click the `.msi` file
-
-Click on `Properties`
-
-Click on the `Digital Signatures` tab
-
-Select the signatures and click on `Details`
+Now right-click the `.msi` file, click on `Properties`, click on the `Digital Signatures` tab, select the signatures and click on `Details`
 
 It should say: `The digital signature is OK.`
 
 Install the .msi file.
 
-2\. Checking that Git, Apache Ant and JDK 8 are working:
+## 2\. Checking that Git, Apache Ant and JDK 8 are working:
 
 Open a Command Prompt window (cmd.exe) and run:
 ```cmd
@@ -166,7 +164,7 @@ Now we have these three components working:
 - Apache Ant 1.10.17
 - Git 2.55.0
 
-3\. Cloning RSC+
+## 3\. Cloning RSC+
 
 Open a Command Prompt window and run:
 ```cmd
@@ -202,13 +200,13 @@ It should print:
 BUILD SUCCESSFUL
 ```
 
-4\. Checking whether RSC+ works:
+## 4\. Checking whether RSC+ works:
 Use the following command to run RSC+:
 ```cmd
 java -jar dist\rscplus.jar
 ```
 
-5\. Downloading the OpenRSC world list:
+## 5\. Downloading the OpenRSC world list:
 In a Command Prompt window run this command:
 ```cmd
 cd C:\Games\rscplus
@@ -218,7 +216,7 @@ Run:
 java -DdownloadWorlds=openrsc_official -jar dist\rscplus.jar
 ```
 
-6\. Creating a batch file (and a desktop shortcut for it) in order to run OpenRSC quickly:
+## 6\. Creating a batch file (and a desktop shortcut for it) in order to run OpenRSC quickly:
 
 In Windows Explorer, navigate to `C:\Games\rscplus`
 

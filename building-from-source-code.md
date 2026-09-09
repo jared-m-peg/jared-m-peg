@@ -10,24 +10,36 @@ Before installing it, check that its digital signature is OK:
 
 Right click the downloaded Git file, `Git-2.55.0.5-64-bit.exe`, click on `Properties`, click on the `Digital Signatures` tab, click on the listed signature, click on `Details`
 
-If it prints, `The digital signature is OK.`, then install it.
+If it prints `The digital signature is OK.`, then install it.
 
 ### Download the Apache Ant binary, the ASC file, and the KEYS file:
 
-Go to: `https://downloads.apache.org/ant/`
+Go to:
 
-Download the following file: `KEYS`
+```text
+https://downloads.apache.org/ant/
+```
 
-Go to: `https://downloads.apache.org/ant/binaries/`
+Download the following file:
+```text
+KEYS
+```
+
+Go to:
+
+```text
+https://downloads.apache.org/ant/binaries/
+```
 
 Download these two files:
 ```text
 apache-ant-1.10.17-bin.zip
 apache-ant-1.10.17-bin.zip.asc
 ```
+
 Place all three files in the same folder.
 
-We need to install Gpg4win so we can check that the Apache Ant zip file has a valid signature from the KEYS file
+We need to install Gpg4win so we can check that the Apache Ant zip file has a valid signature from the KEYS file.
 
 Download Gpg4win from here: `https://gpg4win.org/index.html`
 

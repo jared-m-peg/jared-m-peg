@@ -27,6 +27,9 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 - NAT Gateway (cost-aware implementation)
 - AWS Systems Manager (SSM) for secure instance access without SSH exposure
 
+Technical Skills:
+Git/GitHub, Apache Ant, JDK 8/OpenJDK, Windows CMD & PowerShell, GPG/OpenPGP, SHA-256 checksum verification, digital signature verification, environment variable/PATH configuration, Java build environments, Windows batch scripting, software build automation, source-code compilation, software supply-chain verification, technical documentation and Markdown.
+
 ## Linux Administration
 
 - Verified software integrity using SHA256 checksums
@@ -49,7 +52,7 @@ Secure home network design implementing VLAN segmentation, default-deny firewall
 https://github.com/jared-m-peg/jared-m-peg/blob/main/Guide_RouterOS7.md
 
 🔹 Building a Software Program from its Source Code  
-Building/running a Java application from source, Git/GitHub, Apache Ant, JDK 8, Windows CMD/PowerShell, GPG/OpenPGP signature verification, SHA256 checksum verification, digital signature checking, environment variable/PATH configuration, and batch scripting.  
+Built an open-source Java application from source on Windows, configured Git, Apache Ant, and JDK 1.8; verified downloaded dependencies using GPG/OpenPGP signatures, SHA256 checksums, and Windows digital signatures; configured system environment variables; compiled the application using Ant; validated and executed the resulting JAR; and created a Windows batch launcher. Documented the complete reproducible process in GitHub Markdown. 
 https://github.com/jared-m-peg/jared-m-peg/blob/main/building-from-source-code.md
 
 🔹 Reformatting a Bootable USB Flash Drive Using the Command Line on Windows 10  
@@ -68,4 +71,4 @@ Packet-level analysis of DNS resolution, TCP handshakes, and TLS negotiation.
 
 ---
 
-Currently expanding home lab infrastructure with additional networking and automation projects.
+Currently studying the source code of an open-source Java application and modifying it.

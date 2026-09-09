@@ -1,24 +1,25 @@
 Building RSC+ using its source code on Windows 10
 
-1\. Download the prerequisites (Git, Apache Ant, and JDK 1.8) for building RSC+
+1\. Download and install the prerequisites (Git, Apache Ant, and JDK 1.8) for building RSC+
 
 Download and install Git from here: `https://git-scm.com/install/windows`
 
 Before installing it, check that its digital signature is OK:
 
-Right click the following file: `Git-2.55.0.5-64-bit.exe`
+Right click the downloaded Git file, `Git-2.55.0.5-64-bit.exe`, click on `Properties`, click on the `Digital Signatures` tab, click on the listed signature, click on `Details`
 
-Click on `Properties`
-
-Click on the `Digital Signatures` tab
-Click on the listed signature
-Click on `Details`
 It should print: `The digital signature is OK.`
 
+Install Git
+
 Download the Apache Ant binary, the ASC file, and the KEYS file:
+
 Go to: `https://downloads.apache.org/ant/`
+
 Download the following file: `KEYS`
+
 Go to: `https://downloads.apache.org/ant/binaries/`
+
 Download these two files:
 ```text
 apache-ant-1.10.17-bin.zip

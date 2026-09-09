@@ -10,7 +10,7 @@ Before installing it, check that its digital signature is OK:
 
 Right click the downloaded Git file, `Git-2.55.0.5-64-bit.exe`, click on `Properties`, click on the `Digital Signatures` tab, click on the listed signature, click on `Details`
 
-If it prints `The digital signature is OK.`, then install it.
+If it prints `The digital signature is OK.`, then you may install it.
 
 ### Download the Apache Ant binary, the ASC file, and the KEYS file:
 

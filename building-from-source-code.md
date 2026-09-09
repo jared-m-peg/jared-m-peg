@@ -1,4 +1,4 @@
-## Building RSC+ using its source code on Windows 10
+# Building RSC+ using its source code on Windows 10
 
 ## 1\. Download and install the prerequisites (Git, Apache Ant, and JDK 1.8) for building RSC+
 

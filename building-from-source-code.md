@@ -41,7 +41,11 @@ Place all three files in the same folder.
 
 We need to install Gpg4win so we can check that the Apache Ant zip file has a valid signature from the KEYS file.
 
-Download Gpg4win from here: `https://gpg4win.org/index.html`
+Download Gpg4win from here:
+
+```text
+https://gpg4win.org/index.html
+```
 
 Right-click the file, click `Properties`, click the `Digital Signatures` tab, click on the listed signature, click `Details`, and check whether it says, `The digital signature is OK.`
 
@@ -49,14 +53,17 @@ Open a Command Prompt window (cmd.exe) and use this command to import the KEYS f
 ```cmd
 gpg --import C:\Users\standard_2\Downloads\BuildingSourceCode\ApacheAnt\KEYS
 ```
+
 In the same cmd.exe window, change to the directory where the three Apache Ant files are located:
 ```cmd
 cd C:\Users\standard_2\Downloads\BuildingSourceCode\ApacheAnt
 ```
+
 Use this command to verify the zip file:
 ```cmd
 gpg --verify apache-ant-1.10.17-bin.zip.asc apache-ant-1.10.17-bin.zip
 ```
+
 It should print this:
 ```text
 gpg: Good signature from "Stefan Bodewig <bodewig@apache.org>"
@@ -65,7 +72,8 @@ And it should print the signing key:
 ```text
 6A93161EB1990E8346E7BA2B23738DFD7C40DE43
 ```
-The GPG output shows that the Apache Ant zip file has a valid signature from Stefan Bodewig's key, 6A93161EB1990E8346E7BA2B23738DFD7C40DE43
+
+The GPG output shows that the Apache Ant zip file has a valid signature from Stefan Bodewig's key, 6A93161EB1990E8346E7BA2B23738DFD7C40DE43.
 
 Right-click the `apache-ant-1.10.17-bin.zip` folder
 
@@ -77,7 +85,11 @@ Then click on `Extract`
 
 ### Download and install JDK 1.8:
 
-Download JDK 1.8 from here: `https://adoptium.net/temurin/releases/?version=8&os=any&arch=any`
+Download JDK 1.8 from here:
+
+```text
+https://adoptium.net/temurin/releases/?version=8&os=any&arch=any
+```
 
 Under Windows, select `JDK` and `x64`, and then right-click `MSI` and open in new tab to download the file
 
@@ -97,7 +109,7 @@ which should match the one on the website.
 
 Now right-click the `.msi` file, click on `Properties`, click on the `Digital Signatures` tab, select the signatures and click on `Details`
 
-It should say: `The digital signature is OK.`
+It should say `The digital signature is OK.`
 
 Install the .msi file.
 
@@ -107,15 +119,18 @@ Open a Command Prompt window (cmd.exe) and run:
 ```cmd
 java -version
 ```
+
 It should print:
 ```text
 OpenJDK 1.8.0_504
 64-Bit Server VM
 ```
+
 Check if the JDK compiler is available by running:
 ```cmd
 javac -version
 ```
+
 It should print:
 ```text
 javac 1.8.0_504
@@ -128,20 +143,20 @@ Search for: `environment variables`
 Click on `Edit the system environment variables`
 
 In the System Properties window click on `Environment Variables` on the bottom
+
 Under `System Variables`, click on `New`
+
 For `Variable name` type:
 ```text
 ANT_HOME
 ```
+
 For `Variable value` type:
 ```text
 C:\Tools\apache-ant-1.10.17
 ```
-Now select `Path` in the list
 
-Click on `Edit`
-
-Click on `New`
+Now select `Path` in the list, click on `Edit`, click on `New`
 
 And type:
 ```text
@@ -153,10 +168,12 @@ Click `OK` on the `Environment Variables` window
 Click `OK` on the `System Properties` window
 
 Check whether Ant is configured correctly:
+
 Open a Command Prompt window and run this command:
 ```cmd
 ant -version
 ```
+
 It should print:
 ```text
 Apache Ant(TM) version 1.10.17 compiled on April 6 2026
@@ -201,12 +218,14 @@ and then:
 ```cmd
 dir
 ```
+
 The file `build.xml` should be listed.
 
 In the Command Prompt window, run:
 ```cmd
 ant dist
 ```
+
 It should print:
 ```text
 BUILD SUCCESSFUL

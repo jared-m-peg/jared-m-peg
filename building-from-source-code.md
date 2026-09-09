@@ -251,7 +251,7 @@ In Windows Explorer, navigate to `C:\Games\rscplus`
 
 Right-click on the white space, click on `New`, click on `Text Document`
 
-Rename the `New Text Document.txt` to `Launch RSCPlus.bat`
+Rename the newly created text document from `New Text Document.txt` to `Launch RSCPlus.bat`
 
 Right-click on `Launch RSCPlus.bat` and click on `Edit`
 

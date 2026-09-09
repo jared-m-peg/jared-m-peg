@@ -1,6 +1,6 @@
 # A Guide for Mikrotik RouterOS 7
 - Part 1: Creating a new configuration, securing it with firewall filter rules, and connecting to the internet over PPPoE
-- Part 2: Creating VLANs and isolating them from accessing each other to enhance security.
+- Part 2: Creating VLANs and isolating them from accessing each other to enhance security
 - Part 3: Setting up a WiFi guest network on its own VLAN
 - Part 4: Checking whether access to router services (Winbox/SSH) is truly restricted to VLAN10-MGMT
 - Part 5: Checking whether inter-VLAN traffic is truly blocked by monitoring packets
@@ -17,7 +17,7 @@ Log into Winbox, click on "New Terminal" on the menu on the left. Type out the f
 
 This creates a new config making you disconnect from the current config. Ensure you backup your default config before creating a new one: Go to Files -> Backup, name your backup file, and click on Backup Config. This saves a backup file to your router which can be restored even after logging in to a new configuration.
 
-Log back into Winbox after the fresh config is created. The default Login (username) is "admin" and the password is blank. Open a "New Terminal".
+Log back into Winbox after the fresh config is created. The default Login (username) is "admin" and the password is blank. Set a complex password and write it down on paper. Open a "New Terminal".
 
 If you like, you can enable or disable Safe Mode by typing:
 Ctrl + X

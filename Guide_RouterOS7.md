@@ -6,7 +6,7 @@
 - Part 5: Checking whether inter-VLAN traffic is truly blocked by monitoring packets
 
 ## Part 1: Creating a new configuration, securing it with firewall filter rules, and connecting to the internet over PPPoE
-0. Create a new configuration
+1\. Create a new configuration
 #Note: The purpose of creating a new config here was to bypass some issues that I had with creating VLANs on the default config that ships with the router. If you're having trouble with getting VLANs running on the default config, then this guide may help you get a fresh config running with VLANs working.
 
 Log into Winbox, click on "New Terminal" on the menu on the left. Type out the following command and press enter.
@@ -25,14 +25,14 @@ If using Safe Mode, ensure you exit Safe Mode to save any changes made to your c
 
 We will build this config by working in this order (correct dependency order): Layer 2 (bridge) -> Layer 3 (IP/DHCP) -> Security -> WAN -> Activation of Internet. For good baseline security, WAN will remain offline until the very end and firewall filter rules will be enabled before WAN is activated.
 
-1. Create the LAN bridge
+2\. Create the LAN bridge
 
 ```text
 /interface bridge
 add name=bridge1
 ```
 
-2. Add LAN ports to the bridge
+3\. Add LAN ports to the bridge
 
 ```text
 /interface bridge port
@@ -48,7 +48,7 @@ Verify:
 /interface bridge port print
 ```
 
-3. Create interface lists
+4\. Create interface lists
 ```text
 /interface list
 add name=WAN
@@ -57,7 +57,7 @@ add name=LAN
 
 We will create additional interface lists later on which will run very well with multiple ethernet ports and VLANs.
 
-4. Add interfaces to lists
+5\. Add interfaces to lists
 
 WAN:
 
@@ -75,39 +75,39 @@ LAN:
 add list=LAN interface=bridge1
 ```
 
-5. Assign LAN IP address
+6\. Assign LAN IP address
 
 ```text
 /ip address
 add address=192.168.88.1/24 interface=bridge1
 ```
 
-6. Reconnect to Winbox using the router's MAC address on ether3 instead of ether2 this time.
+7\. Reconnect to Winbox using the router's MAC address on ether3 instead of ether2 this time.
 
-7. Create DHCP pool
+8\. Create DHCP pool
 ```text
 /ip pool
 add name=LAN_POOL ranges=192.168.88.100-192.168.88.200
 ```
 
-8. Create DHCP server
+9\. Create DHCP server
 ```text
 /ip dhcp-server
 add name=dhcp1 interface=bridge1 address-pool=LAN_POOL
 ```
 
-9. Add DHCP network
+10\. Add DHCP network
 ```text
 /ip dhcp-server network
 add address=192.168.88.0/24 gateway=192.168.88.1 dns-server=1.1.1.1,8.8.8.8
 ```
 
-10. Enable DHCP server
+11\. Enable DHCP server
 ```text
 /ip dhcp-server enable dhcp1
 ```
 
-11. Create firewall rules
+12\. Create firewall rules
 Input chain
 ```text
 /ip firewall filter
@@ -124,7 +124,7 @@ add chain=forward connection-state=invalid action=drop comment="Drop Invalid"
 ```
 These rules provide a good level of protection before we connect to the internet. We will add final drop rules later on.
 
-12. Create PPPoE client (disabled)
+13\. Create PPPoE client (disabled)
 ```text
 /interface pppoe-client
 add \
@@ -137,13 +137,13 @@ use-peer-dns=yes \
 disabled=yes
 ```
 
-13. Add PPPoE to WAN list
+14\. Add PPPoE to WAN list
 ```text
 /interface list member
 add list=WAN interface=pppoe-out1
 ```
 
-14. Configure NAT
+15\. Configure NAT
 ```text
 /ip firewall nat
 add chain=srcnat out-interface-list=WAN action=masquerade
@@ -151,7 +151,7 @@ add chain=srcnat out-interface-list=WAN action=masquerade
 
 This allows the router's DHCP server's addresses to be translated into the ISP IP address.
 
-15. Complete firewall
+16\. Complete firewall
 
 Input drop:
 
@@ -174,7 +174,7 @@ Forward drop:
 add chain=forward action=drop comment="Drop Everything Else"
 ```
 
-16. Disable unnecessary services
+17\. Disable unnecessary services
 
 ```text
 /ip service
@@ -194,7 +194,7 @@ set winbox address=192.168.88.0/24
 Now Winbox can only be accessed from devices in my own subnet (192.168.88.0/24). I'm currently using a laptop to access Winbox on the address 192.168.88.200 that was assigned to my laptop by the DHCP Server that we created earlier.
 - RESTRICTING WINBOX TO 192.168.88.0/24 IS PROBABLY NOT NECESSARY FOR SETTING THE ROUTER UP AT THIS STAGE BUT IT WAS THE STEP THAT I TOOK. WHEN THE VLANS ARE CREATED WINBOX CAN BE RESTRICTED TO VLAN10-MGMT VIA A FIREWALL FILTER RULE (INSTRUCTIONS WILL BE PROVIDED)
 
-17. Verify everything
+18\. Verify everything
 ```text
 /interface bridge print
 /interface bridge port print
@@ -239,7 +239,7 @@ VLAN 30	Main WiFi	WiFi SSID + ether5
 VLAN 40	Guest WiFi	WiFi SSID only
 
 
-1. Remove old LAN IP from bridge - DON'T USE STEP 1
+1\. Remove old LAN IP from bridge - DON'T USE STEP 1
 
 First check:
 
@@ -253,9 +253,9 @@ Remove:
 /ip address remove [find interface=bridge1]
 ```
 
-DON'T DELETE THE IP ADDRESS / THE BRIDGE OTHERWISE YOU'LL LOSE INTERNET. NEED TO REMOVE THE IP ADDRESS LATER.
+DON'T DELETE THE IP ADDRESS / THE BRIDGE, OTHERWISE YOU'LL LOSE INTERNET. NEED TO REMOVE THE IP ADDRESS LATER.
 
-2. Create VLAN interfaces
+2\. Create VLAN interfaces
 ```text
 /interface vlan
 add name=vlan10-mgmt interface=bridge1 vlan-id=10
@@ -264,7 +264,7 @@ add name=vlan30-wifi interface=bridge1 vlan-id=30
 add name=vlan40-guest interface=bridge1 vlan-id=40
 ```
 
-3. Create an IP Address for each VLAN
+3\. Create an IP Address for each VLAN
 
 ```text
 /ip address
@@ -274,7 +274,7 @@ add address=192.168.30.1/24 interface=vlan30-wifi
 add address=192.168.40.1/24 interface=vlan40-guest
 ```
 
-4. Compare bridge1's IP address to the VLANs' IP addresses
+4\. Compare bridge1's IP address to the VLANs' IP addresses
 
 ```text
 /ip address print
@@ -282,7 +282,7 @@ add address=192.168.40.1/24 interface=vlan40-guest
 
 We can see that each vlan interface has its own gateway IP address (192.168.10.1/24, 192.168.20.1/24, etc.) as opposed to bridge1 that has 192.168.88.1./24. We currently have internet connectivity because of 192.168.88.1/24. We will later remove 192.168.88.1/24 from bridge1.
 
-5. Configure Bridge Ports
+5\. Configure Bridge Ports
 We must configure the bridge ports before enabling VLAN filtering
 
 ```text
@@ -295,7 +295,7 @@ set [find interface=ether5] pvid=30
 
 We'll add vlan40 (used for Guest Wifi) later on
 
-6. Examine bridge ports & add the missing ether2
+6\. Examine bridge ports & add the missing ether2
 
 ```text
 /interface bridge port print
@@ -308,7 +308,7 @@ This command shows your bridge ports. The interface ether2 didn't appear for me;
 add bridge=bridge1 interface=ether2 pvid=10
 ```
 
-7. Create DHCP server for VLAN20
+7\. Create DHCP server for VLAN20
 
 First create the DHCP pool:
 
@@ -445,71 +445,69 @@ Under IP -> DHCP Server -> Networks, double-click on 192.168.20.0/24 and add the
 149.112.112.112
 
 The firewall filter forward rule for LAN can now be removed:
+First, print your filter rules and check the number for your LAN filter rule:
 ```text
 /ip firewall filter print
+```
+Remove the filter rule for LAN. For me it was 10:
+```text
 /ip firewall filter remove 10
 ```
 
 Check your VLANs:
-
 ```text
 /interface vlan print
 ```
 
 You should see:
-
+```text
 vlan10   vlan-id=10   interface=bridge1
 vlan20   vlan-id=20   interface=bridge1
 vlan30   vlan-id=30   interface=bridge1
 vlan40   vlan-id=40   interface=bridge1
+```
 
-Check your addresses: 
-
+Check your addresses:
 ```text
 /ip address print
 ```
 
 You should see:
-
+```text
 192.168.10.1/24 vlan10-mgmt
 192.168.20.1/24 vlan20-lan
 192.168.30.1/24 vlan30-wifi
 192.168.40.1/24 vlan40-guest
+```
 
-Create VLAN10-MGMT--this VLAN will be used to manage router services (Winbox / SSH):
-
+Create VLAN10-MGMT--this VLAN will be used to manage router services such as Winbox and SSH:
 ```text
 /interface list add name=VLAN10-MGMT
 ```
 
 Then add VLAN10 to it:
-
 ```text
 /interface list member add list=VLAN10-MGMT interface=vlan10-mgmt
 ```
 
 Check:
-
 ```text
 /interface list print
 ```
 
 and:
-
 ```text
 /interface list member print
 ```
 
 Add the following firewall filter rule:
-
 ```text
 /ip firewall filter add chain=input action=accept in-interface-list=VLAN10-MGMT comment="Allow MGMT to manage router services"
 ```
 
-Note: Go to IP -> Firewall -> Filter Rules, and drag this rule above the "Drop everything else" input rule. This can also be done via the CLI but using the CLI here is more cumbersome.
+Note: Go to IP -> Firewall -> Filter Rules, and drag this rule above the "Drop everything else" input rule. This can also be done via the CLI, but using the CLI here is more cumbersome.
 
-Create pools
-
+Create pools:
 ```text
 /ip pool
 add name=pool-vlan10 ranges=192.168.10.100-192.168.10.200
@@ -518,13 +516,11 @@ add name=pool-vlan40 ranges=192.168.40.100-192.168.40.200
 ```
 
 Verify:
-
 ```text
 /ip pool print
 ```
 
-Create DHCP servers
-
+Create DHCP servers:
 ```text
 /ip dhcp-server
 add name=dhcp-vlan10 interface=vlan10-mgmt address-pool=pool-vlan10 disabled=no
@@ -533,13 +529,11 @@ add name=dhcp-vlan40 interface=vlan40-guest address-pool=pool-vlan40 disabled=no
 ```
 
 Verify:
-
 ```text
 /ip dhcp-server print
 ```
 
 You should have:
-
 ```text
 dhcp-vlan10
 dhcp-vlan20
@@ -548,7 +542,6 @@ dhcp-vlan40
 ```
 
 Add DHCP network entries
-
 ```text
 /ip dhcp-server network
 add address=192.168.10.0/24 gateway=192.168.10.1 dns-server=9.9.9.9,149.112.112.112
@@ -557,23 +550,22 @@ add address=192.168.40.0/24 gateway=192.168.40.1 dns-server=9.9.9.9,149.112.112.
 ```
 
 Then check:
-
 ```text
 /ip dhcp-server network print
 ```
 
-The router is now ready to hand out addresses to all VLANs
+The router is now ready to hand out addresses to all VLANs.
 
 Under Bridge -> Ports double click on each interface (ether2/3/4/5), go to the VLAN tab, and set Frame Types to:
 admit only untagged and priority tagged
 
-After this we move to the bridge VLAN table cleanup, because your current VLAN table is still missing the access assignments for:
+After this we'll move to the bridge VLAN table cleanup, because our current VLAN table is still missing the access assignments for:
 
 ether2 → VLAN10
 ether4 → VLAN20
 ether5 → VLAN30
 
-and then we configure the WiFi SSIDs.
+and then we'll configure the WiFi SSIDs.
 
 Fix Bridge VLAN table - NOT NECESSARY
 
@@ -619,16 +611,14 @@ We will prevent all VLANs from accessing the other VLANs to increase security
 
 Under IP -> Firewall -> Filter Rules, drag the forward chain rule "Drop Everything Else" (final drop rule) all the way to the bottom.
 
-Allow only VLAN10-MGMT to manage router services (Winbox / SSH)
-We want only devices on ether2 (VLAN10-MGMT) to access router services (Winbox / SSH), not ether3 (VLAN20-LAN), so disconnect your PC from ether3 (VLAN20-LAN) and reconnect to Winbox on ether2 (VLAN10-MGMT)
-After connecting to ether2 (VLAN10-MGMT), find the number for the "Allow LAN to manage router services" rule (the input rule for VLAN20-LAN)
-
+Allow only VLAN10-MGMT to manage router services (Winbox / SSH):
+We want only devices on ether2 (VLAN10-MGMT) to access router services (Winbox / SSH), not ether3 (VLAN20-LAN), so disconnect your PC from ether3 (VLAN20-LAN) and reconnect to Winbox on ether2 (VLAN10-MGMT).
+After connecting to ether2 (VLAN10-MGMT), find the number for the "Allow LAN to manage router services" rule (the input rule for VLAN20-LAN):
 ```text
 /ip firewall filter print
 ```
 
 and remove it
-
 ```text
 /ip firewall filter remove 4
 ```
@@ -636,7 +626,6 @@ and remove it
 Now only devices on VLAN10-MGMT can access router services (Winbox / SSH).
 
 Our firewall filter rules should now look like this:
-
 ```text
 /ip/firewall/filter> print
 

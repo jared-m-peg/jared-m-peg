@@ -49,7 +49,6 @@ Secure home network design implementing VLAN segmentation, default-deny firewall
 https://github.com/jared-m-peg/jared-m-peg/blob/main/Guide_RouterOS7.md
 
 🔹 Reformatting a Bootable USB Drive Using the Command Line
-
 https://github.com/jared-m-peg/jared-m-peg/blob/main/reformat-bootable-usb-drive.md
 
 🔹 AWS Secure VPC Lab  

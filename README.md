@@ -44,7 +44,7 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 
 ## Featured Projects
 
-🔹 Setting up a MikroTik Router  
+🔹 Setting Up a MikroTik Router  
 Secure home network design implementing VLAN segmentation, default-deny firewall policies, NAT, and WiFi.  
 https://github.com/jared-m-peg/jared-m-peg/blob/main/Guide_RouterOS7.md
 

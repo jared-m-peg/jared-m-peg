@@ -136,9 +136,7 @@ It should print:
 javac 1.8.0_504
 ```
 
-Press the Windows key on the keyboard
-
-Search for: `environment variables`
+Press the Windows key on the keyboard and type: `environment variables`
 
 Click on `Edit the system environment variables`
 
@@ -263,12 +261,13 @@ In the Notepad window paste these three lines:
 java -DdownloadWorlds=openrsc_official -jar dist\rscplus.jar
 pause
 ```
+
 Click `File`, click `Save As`
+
 For `Save as type`, select `All Files`
+
 Click on `Save`
 
-Right-click on `Launch RSCPlus.bat`
-
-Click on `Send to` and then click on `Desktop (create shortcut)`
+Right-click on `Launch RSCPlus.bat`, click on `Send to`, and then click on `Desktop (create shortcut)`
 
 You now have a desktop shortcut for your batch file to start RSCPlus quickly!

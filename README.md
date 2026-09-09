@@ -33,16 +33,6 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 - Software integrity and dependency verification
 - GitHub Markdown documentation
 
-## Cloud (AWS)
-
-- VPC architecture and network design
-- Public and private subnet design
-- EC2 instance deployment and management
-- Route tables and traffic flow control
-- Internet Gateway configuration
-- NAT Gateway (cost-aware implementation)
-- AWS Systems Manager (SSM) for secure instance access without SSH exposure
-
 ## Linux Administration
 
 - Verified software integrity using SHA256 checksums
@@ -57,6 +47,16 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 - Storage management (mount, lsblk, fdisk basics)
 - SSH configuration and hardening
 - UFW firewall configuration
+
+## Cloud (AWS)
+
+- VPC architecture and network design
+- Public and private subnet design
+- EC2 instance deployment and management
+- Route tables and traffic flow control
+- Internet Gateway configuration
+- NAT Gateway (cost-aware implementation)
+- AWS Systems Manager (SSM) for secure instance access without SSH exposure
 
 ## Featured Projects
 
@@ -84,4 +84,4 @@ Packet-level analysis of DNS resolution, TCP handshakes, and TLS negotiation.
 
 ---
 
-Currently studying the source code of an open-source Java application and modifying it.
+Currently studying the source code of an open-source Java application and modifying it successfully.

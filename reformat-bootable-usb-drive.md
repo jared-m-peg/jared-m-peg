@@ -1,7 +1,8 @@
 ## REFORMATTING A (BOOTABLE) USB THUMB DRIVE IN COMMAND PROMPT ON WINDOWS 10
-#This guide is for anyone who is trying to reformat a bootable USB thumb drive in Windows Explorer, but it does not work and reports that it cannot be formatted and is write-protected. This guide will show you how to reformat the USB drive.
+This guide is for anyone who is trying to reformat a bootable USB thumb drive in Windows Explorer, but it does not work and reports that it cannot be formatted and is write-protected. This guide will show you how to reformat the USB drive.
 
 Run cmd.exe as Administrator
+
 Run the following command:
 ```
 diskpart

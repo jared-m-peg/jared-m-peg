@@ -6,8 +6,9 @@
 - Part 5: Checking whether inter-VLAN traffic is truly blocked by monitoring packets
 
 ## Part 1: Creating a new configuration, securing it with firewall filter rules, and connecting to the internet over PPPoE
-1\. Create a new configuration
-#Note: The purpose of creating a new config here was to bypass some issues that I had with creating VLANs on the default config that ships with the router. If you're having trouble with getting VLANs running on the default config, then this guide may help you get a fresh config running with VLANs working.
+1\. Create a new configuration:
+
+Note: The purpose of creating a new config here was to bypass some issues that I had with creating VLANs on the default config that ships with the router. If you're having trouble with getting VLANs running on the default config, then this guide may help you get a fresh config running with VLANs working.
 
 Log into Winbox, click on "New Terminal" on the menu on the left. Type out the following command and press enter.
 
@@ -25,14 +26,14 @@ If using Safe Mode, ensure you exit Safe Mode to save any changes made to your c
 
 We will build this config by working in this order (correct dependency order): Layer 2 (bridge) -> Layer 3 (IP/DHCP) -> Security -> WAN -> Activation of Internet. For good baseline security, WAN will remain offline until the very end and firewall filter rules will be enabled before WAN is activated.
 
-2\. Create the LAN bridge
+2\. Create the LAN bridge:
 
 ```text
 /interface bridge
 add name=bridge1
 ```
 
-3\. Add LAN ports to the bridge
+3\. Add LAN ports to the bridge:
 
 ```text
 /interface bridge port
@@ -48,7 +49,7 @@ Verify:
 /interface bridge port print
 ```
 
-4\. Create interface lists
+4\. Create interface lists:
 ```text
 /interface list
 add name=WAN
@@ -57,7 +58,7 @@ add name=LAN
 
 We will create additional interface lists later on which will run very well with multiple ethernet ports and VLANs.
 
-5\. Add interfaces to lists
+5\. Add interfaces to lists:
 
 WAN:
 
@@ -69,13 +70,12 @@ add list=WAN interface=ether1
 The Mikrotik router connects to my Huawei modem on ether1 using an ethernet cable. My Huawei modem is set to PPPoE passthrough/bridged mode (the Mikrotik does the routing instead of the Huawei).
 
 LAN:
-
 ```text
 /interface list member
 add list=LAN interface=bridge1
 ```
 
-6\. Assign LAN IP address
+6\. Assign LAN IP address:
 
 ```text
 /ip address
@@ -84,30 +84,30 @@ add address=192.168.88.1/24 interface=bridge1
 
 7\. Reconnect to Winbox using the router's MAC address on ether3 instead of ether2 this time.
 
-8\. Create DHCP pool
+8\. Create DHCP pool:
 ```text
 /ip pool
 add name=LAN_POOL ranges=192.168.88.100-192.168.88.200
 ```
 
-9\. Create DHCP server
+9\. Create DHCP server:
 ```text
 /ip dhcp-server
 add name=dhcp1 interface=bridge1 address-pool=LAN_POOL
 ```
 
-10\. Add DHCP network
+10\. Add DHCP network:
 ```text
 /ip dhcp-server network
 add address=192.168.88.0/24 gateway=192.168.88.1 dns-server=1.1.1.1,8.8.8.8
 ```
 
-11\. Enable DHCP server
+11\. Enable DHCP server:
 ```text
 /ip dhcp-server enable dhcp1
 ```
 
-12\. Create firewall rules
+12\. Create firewall rules:
 Input chain
 ```text
 /ip firewall filter
@@ -124,7 +124,7 @@ add chain=forward connection-state=invalid action=drop comment="Drop Invalid"
 ```
 These rules provide a good level of protection before we connect to the internet. We will add final drop rules later on.
 
-13\. Create PPPoE client (disabled)
+13\. Create PPPoE client (disabled):
 ```text
 /interface pppoe-client
 add \
@@ -137,13 +137,13 @@ use-peer-dns=yes \
 disabled=yes
 ```
 
-14\. Add PPPoE to WAN list
+14\. Add PPPoE to WAN list:
 ```text
 /interface list member
 add list=WAN interface=pppoe-out1
 ```
 
-15\. Configure NAT
+15\. Configure NAT:
 ```text
 /ip firewall nat
 add chain=srcnat out-interface-list=WAN action=masquerade
@@ -151,31 +151,27 @@ add chain=srcnat out-interface-list=WAN action=masquerade
 
 This allows the router's DHCP server's addresses to be translated into the ISP IP address.
 
-16\. Complete firewall
+16\. Complete firewall:
 
 Input drop:
-
 ```text
 /ip firewall filter
 add chain=input action=drop comment="Drop Everything Else"
 ```
 
 Forward LAN -> WAN:
-
 ```text
 /ip firewall filter
 add chain=forward in-interface-list=LAN out-interface-list=WAN action=accept comment="LAN Internet Access"
 ```
 
 Forward drop:
-
 ```text
 /ip firewall filter
 add chain=forward action=drop comment="Drop Everything Else"
 ```
 
-17\. Disable unnecessary services
-
+17\. Disable unnecessary services:
 ```text
 /ip service
 disable telnet
@@ -184,8 +180,8 @@ disable www
 disable api
 disable api-ssl
 ```
-Restrict WinBox:
 
+Restrict WinBox:
 ```text
 /ip service
 set winbox address=192.168.88.0/24
@@ -194,7 +190,7 @@ set winbox address=192.168.88.0/24
 Now Winbox can only be accessed from devices in my own subnet (192.168.88.0/24). I'm currently using a laptop to access Winbox on the address 192.168.88.200 that was assigned to my laptop by the DHCP Server that we created earlier.
 - RESTRICTING WINBOX TO 192.168.88.0/24 IS PROBABLY NOT NECESSARY FOR SETTING THE ROUTER UP AT THIS STAGE BUT IT WAS THE STEP THAT I TOOK. WHEN THE VLANS ARE CREATED WINBOX CAN BE RESTRICTED TO VLAN10-MGMT VIA A FIREWALL FILTER RULE (INSTRUCTIONS WILL BE PROVIDED)
 
-18\. Verify everything
+18\. Verify everything:
 ```text
 /interface bridge print
 /interface bridge port print
@@ -204,20 +200,18 @@ Now Winbox can only be accessed from devices in my own subnet (192.168.88.0/24).
 /ip firewall nat print
 ```
 
+19\. Enable PPPoE last:
 ```text
-16. Enable PPPoE last
 /interface pppoe-client
 enable pppoe-out1
 ```
 
 Verify:
-
 ```text
 /interface pppoe-client monitor pppoe-out1 once
 ```
 
 Test:
-
 ```text
 /ping 1.1.1.1
 ```

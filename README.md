@@ -44,15 +44,15 @@ Aspiring Systems Administrator focused on networking, Linux systems, cloud infra
 
 ## Featured Projects
 
-🔹 Setting up a MikroTik router  
+🔹 Setting up a MikroTik Router  
 Secure home network design implementing VLAN segmentation, default-deny firewall policies, NAT, and WiFi.  
 https://github.com/jared-m-peg/jared-m-peg/blob/main/Guide_RouterOS7.md
 
-🔹 Building a software program from its source code  
+🔹 Building a Software Program from its Source Code  
 Building/running a Java application from source, Git/GitHub, Apache Ant, JDK 8, Windows CMD/PowerShell, GPG/OpenPGP signature verification, SHA256 checksum verification, digital signature checking, environment variable/PATH configuration, and batch scripting.  
 https://github.com/jared-m-peg/jared-m-peg/blob/main/building-from-source-code.md
 
-🔹 Reformatting a bootable USB flash drive using the command line on Windows 10  
+🔹 Reformatting a Bootable USB Flash Drive Using the Command Line on Windows 10  
 https://github.com/jared-m-peg/jared-m-peg/blob/main/reformat-bootable-usb-drive.md
 
 🔹 AWS Secure VPC Lab  
